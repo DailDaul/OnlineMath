@@ -1,8 +1,7 @@
 Именуем файлы по их прямому назначению, чтобы избежать путаницы.
-Server-client - Букарева Анна
+Server-client и Server-clients - Букарева Анна и Князева Таисия
 Frontend и window (интерфейс) - Новосёловаа Мария
-Documents - Пешкова Ульяна
-Server
+Documents - Пешкова Ульяна и Князева Таисия
 
 echo "# OnlineMath" >> README.md
 git init
