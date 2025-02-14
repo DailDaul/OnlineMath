@@ -1,3 +1,5 @@
+Именуем файлы по их прямому назначению, чтобы избежать путаницы
+
 echo "# OnlineMath" >> README.md
 git init
 git add README.md
