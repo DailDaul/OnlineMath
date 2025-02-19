@@ -39,7 +39,7 @@ void MyTcpServer::slotNewConnection(){
     connect(mTcpSocket, &QTcpSocket::disconnected, this, &MyTcpServer::slotClientDisconnected);//если клиент отключился
 }
 
-void MyTcpServer::slotServerRead(){
+void MyTcpServer::slotServerRead() {
     QString res = "";
     while (mTcpSocket->bytesAvailable() > 0) {
         QByteArray array = mTcpSocket->readAll();
@@ -49,9 +49,12 @@ void MyTcpServer::slotServerRead(){
         }
         res.append(array);
     }
-    qDebug() << "Получено от клиента: " << res; //  вывод в консоль сервера
-    QByteArray response = parsing(res);
-    if (!mTcpSocket->write(res.toUtf8())) {
+
+    qDebug() << "Получено от клиента: " << res.toUtf8(); // вывод в консоль сервера
+
+
+    QByteArray response = parsing(res); // Получаем ответ от функции parsing
+    if (!mTcpSocket->write(response)) { // Записываем response в сокет
         qDebug() << "Ошибка записи в сокет";
         return;
     }
@@ -63,3 +66,4 @@ void MyTcpServer::slotClientDisconnected(){
     }
     delete mTcpSocket;
 }
+
