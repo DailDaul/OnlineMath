@@ -1,22 +1,23 @@
-#ifndef DATABASE_H
+/*#ifndef DATABASE_H
 #define DATABASE_H
-QT -= графический интерфейс пользователя
 
-      ####### ДОБАВИТЬ!!!
-      QT + = sql
+#include <QSqlDatabase>
+#include <QSqlQuery>
+#include <QSqlError>
+#include <QDebug>
 
-              CONFIG + = консоль c ++ 11
-    CONFIG -= app_bundle
+class DataBase {
+public:
+    DataBase(const QString &host, const QString &dbName, const QString &user, const QString &password);
+    ~DataBase();
 
-# Вы можете сделать так, чтобы ваш код не компилировался, если он использует устаревшие API.
-# Для этого раскомментируйте следующую строку.
-#ОПРЕДЕЛЯЕТ += QT_DISABLE_DEPRECATED_BEFORE=0x060000 # отключает все API, устаревшие до Qt 6.0.0
+    bool open();
+    void close();
+    bool createUser (const QString &login, const QString &password, const QString &email);
+    void listUsers();
 
-            ИСТОЧНИКИ += \
-       main.cpp
+private:
+    QSqlDatabase db;
+};
 
-# Правила развертывания по умолчанию.
-           qnx: target.path = /tmp/$${TARGET}/bin
-                           else: unix:!android: target.path = /opt/$${TARGET}/bin
-      !isEmpty(target.path): INSTALLS += target
-#endif // DATABASE_H
+#endif // DATABASE_H*/
