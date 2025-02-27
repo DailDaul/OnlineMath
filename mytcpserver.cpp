@@ -61,9 +61,24 @@ void MyTcpServer::slotServerRead() {
 }
 
 void MyTcpServer::slotClientDisconnected(){
-    if (mTcpSocket->isOpen()) {
-        mTcpSocket->close();
-    }
-    delete mTcpSocket;
-}
+    // 1. Отключаем все сигналы и слоты
+    disconnect(mTcpSocket, nullptr, this, nullptr);
 
+    // 2. Убеждаемся, что все данные отправлены (пример)
+    if (mTcpSocket->bytesToWrite() > 0) {
+        mTcpSocket->flush(); // Пытаемся отправить оставшиеся данные
+        mTcpSocket->waitForBytesWritten(1000); // Ждем 1 секунду
+    }
+
+    // 3. Закрываем сокет
+    mTcpSocket->disconnectFromHost();
+
+    // 4. Проверяем состояние сокета перед вызовом waitForDisconnected()
+    if (mTcpSocket->state() == QAbstractSocket::ConnectedState) {
+        mTcpSocket->waitForDisconnected(1000); // Ждем отключения
+    }
+
+    // 5. Удаляем сокет безопасно
+    mTcpSocket->deleteLater();
+    mTcpSocket = nullptr; // Важно обнулить указатель
+}
