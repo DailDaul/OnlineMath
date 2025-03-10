@@ -31,7 +31,7 @@ void MyTcpServer::slotNewConnection(){
         qDebug() << "Сокет не открыт";
         return;
     }
-    if (!mTcpSocket->write("Hello, World!!! I am echo server!\r\n")) {
+    if (!mTcpSocket->write("Hello!!! I am calculator!\r\n")) {
         qDebug() << "Ошибка записи в сокет";
         return;
     }
@@ -80,5 +80,5 @@ void MyTcpServer::slotClientDisconnected(){
 
     // 5. Удаляем сокет безопасно
     mTcpSocket->deleteLater();
-    mTcpSocket = nullptr; // Важно обнулить указатель
+    mTcpSocket = nullptr;
 }
