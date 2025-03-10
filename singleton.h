@@ -1,38 +1,48 @@
-/*#ifndef SINGLETON_H
+#ifndef SINGLETON_H
 #define SINGLETON_H
+#include "dataBase.h"
+#include <QTcpSocket>
 
 class Singleton;
 class SingletonDestroyer
 {
 private:
-    Singleton *instance;// Указатель на экземпляр Singleton
+    Singleton *instance;
 public:
-    ~SingletonDestroyer() {delete instance;}// Деструктор, который удаляет экземпляр Singleton
-    void initialize (Singleton *link) {instance = link;}//Метод, который устанавливает указатель instance на переданный экземпляр Singleton
+    ~SingletonDestroyer() {
+        if (instance) {
+            delete instance;
+        }
+    }
+    void initialize (Singleton *link) {instance = link;}
 };
 
-class Singleton
+class Singleton:public QObject
 {
+    Q_OBJECT
 private:
-    static Singleton *instance;// Статический указатель на единственный экземпляр
-    static SingletonDestroyer destroyer;// Объект для управления временем жизни экземпляра
+    static Singleton *instance;
+    static SingletonDestroyer destroyer;
+    DataBase *db;
+    //QTcpSocket *socket;
 protected:
-    Singleton () {}// Защищенный конструктор
+    Singleton ();// Защищенный конструктор
     Singleton (const Singleton &) = delete;// Запрет на копирование
     Singleton &operator = (Singleton &) = delete;// Запрет на присваивание
-    ~Singleton () {DB.close(); }// Деструктор, закрывающий соединение с базой данных
-    friend class SingletonDestroyer; // Дает доступ к приватным членам класса SingletonDestroyer
+    ~Singleton ();// Деструктор, закрывающий соединение с базой данных
+    friend class SingletonDestroyer;
+
 public:
-    static Singleton * get_instance() {
-        if (!instance)
-        {
-            instance = new Singleton();// Создание нового экземпляра, если он еще не существует
-            destroyer.initialize(instance);// Инициализация destroyer с новым экземпляром
-        }
-        return instance;// Возвращение единственного экземпляра
-    }
+    static Singleton * get_instance();
+    DataBase* getDataBase() { return db; } // Добавлен метод
+    //void send_msg(QString){};
+    bool authenticateUser(const QString& login, const QString& password);
+    int createUser(const QString& login, const QString& password, const QString& email, QString& errorMessage);
+    int getUserId(const QString &login);
+
+public slots:
+    //void slot_on_read() {}
+    //void slot_on_disconnect() {}
 };
 
-Singleton *Singleton ::instance;// Определение статического указателя на экземпляр
-SingletonDestroyer Singleton ::destroyer;// Определение статического объекта destroyer
-#endif // SINGLETON_H*/
+#endif // SINGLETON_H
