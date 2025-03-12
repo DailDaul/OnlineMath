@@ -14,10 +14,10 @@ public:
     bool open();//Метод для открытия соединения с базой данных
     bool isOpen() const;
     void close();//Метод для закрытия соединения с базой данных
-    int createUser(const QString &login, const QString &password, const QString &email, QString& errorMessage);//Метод для создания нового пользователя в базе данных
+    bool createUser(const QString &login, const QString &password, const QString &email, QString& errorMessage, int& userId);//Метод для создания нового пользователя в базе данных
     bool authenticateUser(const QString &login, const QString &password);//Метод для аутентификации пользователя
-    bool saveCalculation(int userId, const QString &operation, const QString &result);//Метод для сохранения результатов вычислений в базе данных
-    QList<QMap<QString, QVariant>> getHistory(int userId, int limit = 30);//Метод для получения истории операций пользователя. Возвращает список, содержащий карты, где ключи — это строки, а значения — это объекты QVariant
+    bool saveCalculation(int userId, const QString &operation);//Метод для сохранения результатов вычислений в базе данных
+   QList<QMap<QString, QVariant>> getHistory(int userId, int limit);//Метод для получения истории операций пользователя. Возвращает список, содержащий карты, где ключи — это строки, а значения — это объекты QVariant
     void listUsers();//Метод для вывода списка пользователей
     void dropUserTable();//Метод для удаления таблицы пользователей из базы данных
     int getUserId(const QString &login);
