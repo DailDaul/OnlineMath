@@ -62,39 +62,39 @@ void DataBase::close() {
 }
 
 // Метод для создания пользователя
-int DataBase::createUser(const QString &login, const QString &password, const QString &email, QString& errorMessage) {
+bool DataBase::createUser(const QString &login, const QString &password, const QString &email, QString& errorMessage, int& userId) {
     QSqlQuery query(db);
 
     // 1. Проверяем, существует ли пользователь с таким же логином
     query.prepare("SELECT COUNT(*) FROM Users WHERE login = :login");
     query.bindValue(":login", login);
     if (!query.exec()) {
-        errorMessage = " Ошибка при проверке логина: " + query.lastError().text();
+        errorMessage = "Ошибка при проверке логина: " + query.lastError().text();
         qDebug() << "createUser: " << errorMessage;
-        return 1; // Код ошибки: ошибка при проверке логина
+        return false; // Ошибка
     }
     query.next();
     int loginCount = query.value(0).toInt();
     if (loginCount > 0) {
-        errorMessage = " Пользователь с логином " + login + " уже существует";
+        errorMessage = "Пользователь с логином " + login + " уже существует";
         qDebug() << "createUser: " << errorMessage;
-        return 2; // Код ошибки: логин уже существует
+        return false; // Логин уже существует
     }
 
     // 2. Проверяем, существует ли пользователь с таким же email
     query.prepare("SELECT COUNT(*) FROM Users WHERE email = :email");
     query.bindValue(":email", email);
     if (!query.exec()) {
-        errorMessage = " Ошибка при проверке email: " + query.lastError().text();
+        errorMessage = "Ошибка при проверке email: " + query.lastError().text();
         qDebug() << "createUser: " << errorMessage;
-        return 3; // Код ошибки: ошибка при проверке email
+        return false; // Ошибка
     }
     query.next();
     int emailCount = query.value(0).toInt();
     if (emailCount > 0) {
-        errorMessage = " Пользователь с email " + email + " уже существует";
+        errorMessage = "Пользователь с email " + email + " уже существует";
         qDebug() << "createUser: " << errorMessage;
-        return 4; // Код ошибки: email уже существует
+        return false; // Email уже существует
     }
 
     // 3. Создаем пользователя (если логин и email уникальны)
@@ -104,13 +104,28 @@ int DataBase::createUser(const QString &login, const QString &password, const QS
     query.bindValue(":email", email);
 
     if (!query.exec()) {
-        errorMessage = " Ошибка при добавлении пользователя: " + query.lastError().text();
+        errorMessage = "Ошибка при добавлении пользователя: " + query.lastError().text();
         qDebug() << "createUser: " << errorMessage;
-        return 5; // Код ошибки: ошибка при добавлении пользователя
+        return false; // Ошибка
     }
 
-    errorMessage = ""; // Очищаем сообщение об ошибке в случае успеха
-    return 0; // Код ошибки: успех
+    // 4. Получаем userId
+    query.prepare("SELECT id FROM Users WHERE login = :login");
+    query.bindValue(":login", login);
+    if (!query.exec()) {
+        errorMessage = "Ошибка при получении id пользователя: " + query.lastError().text();
+        qDebug() << "createUser: " << errorMessage;
+        return false;
+    }
+    if (query.next()) {
+        userId = query.value("id").toInt(); // Получаем userId
+        errorMessage = ""; // Очищаем сообщение об ошибке в случае успеха
+        return true;
+    } else {
+        errorMessage = "Не удалось получить ID пользователя после создания.";
+        qDebug() << "createUser: " << errorMessage;
+        return false;
+    }
 }
 
 // Метод для вывода списка пользователей
@@ -138,17 +153,16 @@ bool DataBase::authenticateUser (const QString &login, const QString &password) 
     return false; // Пользователь не найден
 }
 
-bool DataBase::saveCalculation(int userId, const QString &operation, const QString &result) {
+bool DataBase::saveCalculation(int userId, const QString &operation) {
     QSqlQuery query(db);
 
     // Подготавливаем SQL-запрос с использованием плейсхолдеров
-    query.prepare("INSERT INTO CalculatorHistory (user_id, operation, result) "
-                  "VALUES (:user_id, :operation, :result)");
+    query.prepare("INSERT INTO CalculatorHistory (user_id, operation) "
+                  "VALUES (:user_id, :operation)");
 
     // Привязываем значения к плейсхолдерам
-    query.bindValue(":user_id", userId);      // Важно: userId передается как int
+    query.bindValue(":user_id", userId);
     query.bindValue(":operation", operation);
-    query.bindValue(":result", result);
 
     // Выполняем SQL-запрос
     if (!query.exec()) {
@@ -180,7 +194,7 @@ QList<QMap<QString, QVariant>> DataBase::getHistory(int userId, int limit) {
     QSqlQuery query(db);
 
     // Подготавливаем SQL-запрос
-    query.prepare("SELECT operation, result, timestamp FROM CalculatorHistory "
+    query.prepare("SELECT operation, timestamp FROM CalculatorHistory "
                   "WHERE user_id = :user_id "
                   "ORDER BY timestamp DESC "
                   "LIMIT :limit");
@@ -199,7 +213,6 @@ QList<QMap<QString, QVariant>> DataBase::getHistory(int userId, int limit) {
     while (query.next()) {
         QMap<QString, QVariant> historyEntry;
         historyEntry["operation"] = query.value("operation").toString();
-        historyEntry["result"] = query.value("result").toString();
         historyEntry["timestamp"] = query.value("timestamp").toDateTime();
 
         historyList.append(historyEntry);
