@@ -37,8 +37,10 @@ public:
     DataBase* getDataBase() { return db; } // Добавлен метод
     //void send_msg(QString){};
     bool authenticateUser(const QString& login, const QString& password);
-    int createUser(const QString& login, const QString& password, const QString& email, QString& errorMessage);
+    bool createUser(const QString& login, const QString& password, const QString& email, QString& errorMessage, int& userId);
     int getUserId(const QString &login);
+    bool saveCalculation(int userId, const QString &operation);
+    QList<QMap<QString, QVariant>> getHistory(int userId, int limit);
 
 public slots:
     //void slot_on_read() {}
