@@ -38,10 +38,18 @@ bool Singleton::authenticateUser(const QString& login, const QString& password) 
     return db->authenticateUser(login, password); // Перенаправляем вызов к DataBase
 }
 
-int Singleton::createUser(const QString& login, const QString& password, const QString& email, QString& errorMessage) {
-    return db->createUser(login, password, email, errorMessage);
+bool Singleton::createUser(const QString& login, const QString& password, const QString& email, QString& errorMessage, int& userId) {
+    return db->createUser(login, password, email, errorMessage, userId);
 }
 
 int Singleton::getUserId(const QString &login) {
     return db->getUserId(login);
+}
+
+bool Singleton::saveCalculation(int userId, const QString &operation) {
+    return db->saveCalculation(userId, operation);
+}
+
+QList<QMap<QString, QVariant>> Singleton::getHistory(int userId, int limit) {
+    return db->getHistory(userId, limit);
 }
