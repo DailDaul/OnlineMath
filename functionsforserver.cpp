@@ -4,9 +4,13 @@
 #include <QString>
 #include <QCryptographicHash>
 #include "singleton.h"
+#include <QJsonDocument>
+#include <QJsonArray>
+#include <QJsonObject>
 
 QByteArray auth(QString log, QString pass, QString mail);  // Email по умолчанию пустой
 QByteArray reg(QString log, QString pass, QString mail);
+
 
 QByteArray parsing(QString data_from_client) {
     // 1. Проверка на наличие символа '&'
@@ -47,10 +51,38 @@ QByteArray parsing(QString data_from_client) {
             return "Error: not enough parameters for reg\n";
         }
         return reg(data_from_client_list.at(0), data_from_client_list.at(1), data_from_client_list.at(2));
-    } else if (nameOfFunc == "calc") {
-        // ... (код для calc) ...
-        return "calc&result\n"; // Возвращаем результат (даже если не реализовано)
-    } else {
+    } else if (nameOfFunc == "saveCalculation") {
+        if (data_from_client_list.size() < 2) {
+            qDebug() << "parsing: Ошибка: недостаточно параметров для saveCalculation";
+            return "Error: not enough parameters for saveCalculation\n";
+        }
+        bool ok;
+        int userId = data_from_client_list.at(0).toInt(&ok);
+        if (!ok) {
+            qDebug() << "parsing: Ошибка: неверный userId";
+            return "Error: invalid userId\n";
+        }
+        QString operation = data_from_client_list.at(1).simplified();
+        // Вызываем saveCalculationCommand
+        return saveCalculation(userId, operation);
+    } else if (nameOfFunc == "getHistory") {
+        if (data_from_client_list.size() < 2) {
+            qDebug() << "parsing: Ошибка: недостаточно параметров для getHistory";
+            return "Error: not enough parameters for getHistory\n";
+        }
+
+        bool ok1, ok2;
+        int userId = data_from_client_list.at(0).toInt(&ok1);
+        int limit = data_from_client_list.at(1).toInt(&ok2);
+
+        if (!ok1 || !ok2) {
+            qDebug() << "parsing: Ошибка: неверные userId или limit";
+            return "Error: invalid userId or limit\n";
+        }
+
+        // Вызываем getHistoryCommand
+        return getHistory(userId, limit);
+    }else {
         qDebug() << "parsing: Ошибка: неизвестная функция";
         return "Error: unknown function\n";
     }
@@ -98,16 +130,56 @@ QByteArray reg(QString log, QString pass, QString mail) {
 
     // 3. Пытаемся создать пользователя
     QString errorMessage; // Для получения сообщения об ошибке
-    int creationResult = singleton->createUser(log, hashedPassword, mail, errorMessage);
+    int userId = 0; // Переменная для хранения userId
+    bool creationResult = singleton->createUser(log, hashedPassword, mail, errorMessage, userId);
 
     // 4. Обрабатываем результат создания пользователя
-    if (creationResult == 0) {
+    if (creationResult) {
         // Пользователь успешно создан
         qDebug() << "reg: Пользователь " << log << " успешно зарегистрирован";
-        return "reg&success\n";
+        QString result = QString("reg&success&%1").arg(userId); // Формируем строку с userId
+        return result.toUtf8() + "\n";
     } else {
         // Произошла ошибка при создании пользователя
         qDebug() << "reg: Ошибка при регистрации пользователя " << log << ": " << errorMessage;
         return ("reg&failed&" + errorMessage + "\n").toUtf8(); // Возвращаем сообщение об ошибке
     }
+}
+
+QByteArray saveCalculation(int userId, const QString& operation) {
+    //  Получаем экземпляр Singleton
+    Singleton *singleton = Singleton::get_instance();
+
+    // Вызываем saveCalculation через singleton
+    bool saveResult = singleton->saveCalculation(userId, operation);
+
+    if (saveResult) {
+        return "saveCalculation&success\n";
+    } else {
+        return "saveCalculation&failed\n";
+    }
+}
+
+QByteArray getHistory(int userId, int limit) {
+    // Получаем экземпляр Singleton
+    Singleton* singleton = Singleton::get_instance();
+
+    // Получаем историю вычислений
+    QList<QMap<QString, QVariant>> historyList = singleton->getHistory(userId, limit);
+
+    // Преобразуем историю в JSON
+    QJsonArray jsonArray;
+    for (const auto& entry : historyList) { // Используем range-based for loop
+        QJsonObject jsonEntry;
+        jsonEntry["operation"] = entry["operation"].toString();
+        jsonEntry["timestamp"] = entry["timestamp"].toDateTime().toString(Qt::ISODate); // Форматируем дату
+
+        jsonArray.append(jsonEntry);
+    }
+
+    QJsonDocument jsonDocument(jsonArray);
+    QByteArray jsonData = jsonDocument.toJson(QJsonDocument::Indented); // Используем Indented формат
+
+    // Возвращаем JSON-ответ
+    return jsonData + "\n";
 }
