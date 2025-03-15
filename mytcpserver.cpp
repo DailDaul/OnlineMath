@@ -31,10 +31,10 @@ void MyTcpServer::slotNewConnection(){
         qDebug() << "Сокет не открыт";
         return;
     }
-    if (!mTcpSocket->write("Hello!!! I am calculator!\r\n")) {
-        qDebug() << "Ошибка записи в сокет";
-        return;
-    }
+    //if (!mTcpSocket->write("Hello!!! I am calculator!\r\n")) {
+    //   qDebug() << "Ошибка записи в сокет";
+    //    return;
+    //}
     connect(mTcpSocket, &QTcpSocket::readyRead, this, &MyTcpServer::slotServerRead);//если готов к чтению
     connect(mTcpSocket, &QTcpSocket::disconnected, this, &MyTcpServer::slotClientDisconnected);//если клиент отключился
 }
