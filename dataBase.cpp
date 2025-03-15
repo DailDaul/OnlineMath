@@ -213,7 +213,7 @@ QList<QMap<QString, QVariant>> DataBase::getHistory(int userId, int limit) {
     while (query.next()) {
         QMap<QString, QVariant> historyEntry;
         historyEntry["operation"] = query.value("operation").toString();
-        historyEntry["timestamp"] = query.value("timestamp").toDateTime();
+        //historyEntry["timestamp"] = query.value("timestamp").toDateTime();
 
         historyList.append(historyEntry);
     }
