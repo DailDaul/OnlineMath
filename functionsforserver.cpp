@@ -4,9 +4,8 @@
 #include <QString>
 #include <QCryptographicHash>
 #include "singleton.h"
-#include <QJsonDocument>
-#include <QJsonArray>
-#include <QJsonObject>
+#include <QDateTime>
+
 
 QByteArray auth(QString log, QString pass, QString mail);  // Email по умолчанию пустой
 QByteArray reg(QString log, QString pass, QString mail);
@@ -167,19 +166,15 @@ QByteArray getHistory(int userId, int limit) {
     // Получаем историю вычислений
     QList<QMap<QString, QVariant>> historyList = singleton->getHistory(userId, limit);
 
-    // Преобразуем историю в JSON
-    QJsonArray jsonArray;
+    // Формируем текстовый ответ
+    QString response;
     for (const auto& entry : historyList) { // Используем range-based for loop
-        QJsonObject jsonEntry;
-        jsonEntry["operation"] = entry["operation"].toString();
-        jsonEntry["timestamp"] = entry["timestamp"].toDateTime().toString(Qt::ISODate); // Форматируем дату
+        QString operation = entry["operation"].toString();
+       // QString timestamp = entry["timestamp"].toDateTime().toString(Qt::ISODate);
 
-        jsonArray.append(jsonEntry);
+        // Формат: operation=...&timestamp=...\n
+        response += QString("operation=%1\n").arg(operation);
     }
 
-    QJsonDocument jsonDocument(jsonArray);
-    QByteArray jsonData = jsonDocument.toJson(QJsonDocument::Indented); // Используем Indented формат
-
-    // Возвращаем JSON-ответ
-    return jsonData + "\n";
+    return response.toUtf8(); // Преобразуем QString в QByteArray
 }
