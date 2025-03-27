@@ -170,10 +170,10 @@ QByteArray getHistory(int userId, int limit) {
     QString response;
     for (const auto& entry : historyList) { // Используем range-based for loop
         QString operation = entry["operation"].toString();
-       // QString timestamp = entry["timestamp"].toDateTime().toString(Qt::ISODate);
+        QString timestamp = entry["timestamp"].toDateTime().toString(Qt::ISODate);
 
         // Формат: operation=...&timestamp=...\n
-        response += QString("operation=%1\n").arg(operation);
+       response += QString("operation=%1&timestamp=%2\n").arg(operation).arg(timestamp);
     }
 
     return response.toUtf8(); // Преобразуем QString в QByteArray
