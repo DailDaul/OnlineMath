@@ -8,6 +8,7 @@
 #include <QtNetwork>//модуль, предоставляющий сетевую функциональность
 #include <QByteArray>//класс для работы с массивами байтов
 #include <QDebug>//класс для отладки и вывода сообщений
+#include <QList> // Добавлено для QList
 
 class MyTcpServer : public QObject
 {
@@ -15,13 +16,16 @@ class MyTcpServer : public QObject
 public:
     explicit MyTcpServer(QObject *parent = nullptr);
     ~MyTcpServer();
+
 public slots:
     void slotNewConnection();//будет вызываться при новом подключении клиента
     void slotClientDisconnected();//будет вызываться, когда клиент отключается
     void slotServerRead();//будет вызываться для чтения данных от клиента
+
 private:
-    QTcpServer * mTcpServer;//указатель на объект TCP-сервера
-    QTcpSocket * mTcpSocket;//указатель на объект TCP-сокета для взаимодействия с клиентами
+    QTcpServer * mTсpServer;//указатель на объект TCP-сервера
+    QList<QTcpSocket*> mSockets; //указатель на объект TCP-сокета для взаимодействия с клиентами
     //int server_status;
 };
 #endif // MYTCPSERVER_H
+
