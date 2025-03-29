@@ -6,12 +6,16 @@
 #include <QDebug>
 #include <QMessageBox>
 #include <QJSEngine>
-#include "singletonclient.h"
-calculator::calculator(int userId, QDialog *parent)
-    : QDialog(parent), userId(userId), ui(new Ui::calculator), backgroundLabel(new QLabel(this))
+#include "clientmanager.h"
+calculator::calculator(int userId, ClientManager *clientManager, QDialog *parent)
+    : QDialog(parent),
+    userId(userId),
+    clientManager(clientManager),
+    ui(new Ui::calculator),
+    backgroundLabel(new QLabel(this))
 {
     ui->setupUi(this);
-
+connect(clientManager, &ClientManager::historyReceived, this, &calculator::onHistoryReceived);
     QPixmap backgroundPixmap("C:/Users/novos/Documents/Frontend/Frontend/build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/fon.jpg");
     if (backgroundPixmap.isNull()) {
         qDebug() << "Не удалось загрузить изображение!";
@@ -107,9 +111,6 @@ void calculator::on_cleanButton_clicked() {
 }
 
 void calculator::on_memoryButton_clicked() {
-
-    SingletonClient& client = SingletonClient::getInstance();
-
     // Проверяем, существует ли memoryInstance
     if (!memoryInstance) {
         memoryInstance = new memory(userId, this);
@@ -118,15 +119,14 @@ void calculator::on_memoryButton_clicked() {
 
     // Проверяем, подключен ли сигнал
     if (!isConnected) {
-        connect(&client, &SingletonClient::historyReceived, this, &calculator::onHistoryReceived);
+        connect(clientManager, &ClientManager::historyReceived, this, &calculator::onHistoryReceived);
         isConnected = true;
     }
 
-    client.getHistory(userId, 30);
+    // Запрашиваем историю
+    clientManager->requestHistory(userId, 30);
     memoryInstance->show();
 }
-
-
 
 
 void calculator::onHistoryReceived(int userId, const QStringList& history) {
@@ -135,7 +135,7 @@ void calculator::onHistoryReceived(int userId, const QStringList& history) {
         }
         memoryInstance->updateMemoryDisplay(history);
     } else {
-        qDebug() << "onHistoryReceived: memoryInstance is null!";
+        qDebug() << "calculator::onHistoryReceived: memoryInstance is null!";
     }
 }
 
@@ -146,7 +146,6 @@ void calculator::onMemoryClosed(int userId) {
     }
     memoryInstance = nullptr;
 }
-
 
 
 void calculator::on_editButton_clicked() {
@@ -207,17 +206,8 @@ double calculator::evaluateExpression(const QString &expression) {
 }
 
 void calculator::saveCalculation(const QString &calculation, int userId) {
-    // Получаем экземпляр клиента
-    SingletonClient& client = SingletonClient::getInstance();
+clientManager->saveCalculation(userId, calculation);
 
-    // Вызываем метод для сохранения вычисления на сервере
-    QByteArray response = client.saveCalculation(userId, calculation);
-
-    // Обрабатываем ответ
-    if (response.startsWith("saveCalculation&success")) {
-        qDebug() << "Вычисление '" << calculation << "' успешно сохранено для пользователя " << userId;
-    } else {
-        qDebug() << "Ошибка при сохранении вычисления '" << calculation << "' для пользователя " << userId << ": " << response;
-    }
 }
+
 

@@ -2,13 +2,11 @@
 #include "ui_auth.h"
 #include "firstwindow.h"
 #include "calculator.h"
-#include "singletonclient.h"
 #include <QMessageBox>
 #include <QVBoxLayout>
-
-
-auth::auth(QDialog *parent) :
+auth::auth(ClientManager* clientManager, QDialog *parent) :
     QDialog(parent),
+ clientManager(clientManager),
     ui(new Ui::auth),
 
     backgroundLabel(new QLabel(this)),
@@ -78,37 +76,35 @@ void auth::on_authButton_clicked() {
     QString login = ui->loginreg->text();
     QString password = ui->passwordforreg->text();
 
-    // Получаем экземпляр SingletonClient
-    SingletonClient& client = SingletonClient::getInstance();
-
-    // Вызов метода auth
-    QByteArray response = client.auth(login, password);
+    QByteArray response = clientManager->authenticateUser (login, password);
 
     if (response.startsWith("auth&success&")) {
-
         QStringList responseParts = QString(response).split('&');
         if (responseParts.size() > 2) {
             bool ok;
-            int userId = responseParts.at(2).toInt(&ok);  // Преобразуем в int
+            int userId = responseParts.at(2).toInt(&ok);
             if (!ok) {
                 QMessageBox::warning(this, "Ошибка", "Не удалось преобразовать ID пользователя.");
                 return;
             }
             qDebug() << "Аутентификация успешна. userId:" << userId;
 
-            calculator *calculatorWindow = new calculator(userId, this); // Передаем userId
+            // Создаем окно калькулятора, передавая userId
+            calculator *calculatorWindow = new calculator(userId, clientManager, this);
             calculatorWindow->show();
 
-            connect(calculatorWindow, &QDialog::finished, this, &QWidget::deleteLater); // Удаляем текущее окно авторизации при закрытии калькулятора
+            // Удаляем текущее окно авторизации при закрытии калькулятора
+            connect(calculatorWindow, &QDialog::finished, this, &QWidget::deleteLater);
             this->hide(); // Скрываем текущее окно авторизации
         } else {
             QMessageBox::warning(this, "Ошибка", "Неверный формат ответа от сервера.");
         }
     } else {
-
         QMessageBox::warning(this, "Ошибка", "Неверный логин или пароль.");
     }
 }
+
+
 
 void auth::on_backtoButton_clicked()
 {

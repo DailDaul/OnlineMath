@@ -5,6 +5,7 @@
 #include <QLabel>
 #include "memory.h"
 #include <QPointer>
+#include "clientmanager.h"
 namespace Ui {
 class calculator;
 }
@@ -13,7 +14,7 @@ class calculator : public QDialog {
     Q_OBJECT
 
 public:
-    explicit calculator(int userId, QDialog *parent = nullptr);
+    explicit calculator(int userId, ClientManager *clientManager, QDialog *parent = nullptr);
 
     QStringList getRecentCalculations() const { return recentCalculations; }
     ~calculator();
@@ -54,6 +55,7 @@ private:
     QLabel *backgroundLabel;
     QStringList recentCalculations;
     QPointer<memory> memoryInstance;
+    ClientManager *clientManager;
     bool isOpen = false;
     bool isConnected = false;
     double evaluateExpression(const QString &expression);

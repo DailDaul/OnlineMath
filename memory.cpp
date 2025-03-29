@@ -9,6 +9,8 @@ memory::memory(int userId, QWidget *parent) : QDialog(parent), userId(userId) {
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->addWidget(memoryListWidget);
     setLayout(layout);
+
+
     this->setStyleSheet("QDialog { background-image: url(C:/Users/novos/Documents/Frontend/Frontend/build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/fon.jpg); }");
 
 
@@ -26,6 +28,7 @@ memory::memory(int userId, QWidget *parent) : QDialog(parent), userId(userId) {
 
 
     memoryListWidget->setStyleSheet(listStyle);
+    memoryListWidget->setVisible(true);
 }
 
 
@@ -42,3 +45,4 @@ void memory::updateMemoryDisplay(const QStringList& calculations) {
         memoryListWidget->addItem(calculation);
     }
 }
+

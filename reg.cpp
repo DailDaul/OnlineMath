@@ -4,9 +4,8 @@
 #include "calculator.h"
 #include <QMessageBox>
 #include <QVBoxLayout>
-#include "singletonclient.h"
-reg::reg(QWidget *parent) :
-    QDialog(parent),
+reg::reg(ClientManager *clientManager, QWidget *parent) :
+    QDialog(parent), m_clientManager(clientManager),
     ui(new Ui::reg),
     backgroundLabel(new QLabel(this)),
     movie(new QMovie("C:/Users/novos/Documents/Frontend/Frontend/build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/Blossoms.gif"))
@@ -21,53 +20,51 @@ reg::reg(QWidget *parent) :
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->addWidget(backgroundLabel);
     setLayout(layout);
-
     QString lineStyle = "QLineEdit {"
-                          "background-color: rgba(255, 255, 255, 200);"
-                          "border: 1px solid rgba(255, 184, 224, 1);"
-                          "border-radius: 10px;"
-                          "padding: 10px;"
-                          "font-size: 14px;"
-                          "}"
-                          "QLineEdit:hover {"
-                          "background-color: rgba(255, 255, 255, 255);"
-                          "border: 1px solid rgba(252, 169, 216, 1);"
-                          "}";
-
-    ui->login->setStyleSheet(lineStyle);
-    ui->password->setStyleSheet(lineStyle);
-    ui->password_2->setStyleSheet(lineStyle);
-    ui->email->setStyleSheet(lineStyle);
-
-    QString labelStyle = "QLabel {"
                         "background-color: rgba(255, 255, 255, 200);"
                         "border: 1px solid rgba(255, 184, 224, 1);"
                         "border-radius: 10px;"
                         "padding: 10px;"
                         "font-size: 14px;"
+                        "}"
+                        "QLineEdit:hover {"
+                        "background-color: rgba(255, 255, 255, 255);"
+                        "border: 1px solid rgba(252, 169, 216, 1);"
                         "}";
+
+    ui->login->setStyleSheet(lineStyle);
+    ui->password->setStyleSheet(lineStyle);
+    ui->password_2->setStyleSheet(lineStyle);
+    ui->email->setStyleSheet(lineStyle);
+    QString labelStyle = "QLabel {"
+                         "background-color: rgba(255, 255, 255, 200);"
+                         "border: 1px solid rgba(255, 184, 224, 1);"
+                         "border-radius: 10px;"
+                         "padding: 10px;"
+                         "font-size: 14px;"
+                         "}"
+        ;
     ui->loginL->setStyleSheet(labelStyle);
     ui->passwordL->setStyleSheet(labelStyle);
     ui->passwordL_2->setStyleSheet(labelStyle);
     ui->emailL->setStyleSheet(labelStyle);
 
-QString buttonStyle = "QPushButton {"
-                      "background-color: rgba(255, 255, 255, 200);"
-                      "border: 1px solid rgba(255, 184, 224, 1);"
-                      "border-radius: 10px;"
-                      "padding: 10px;"
-                      "font-size: 16px;"
-                      "}"
-                      "QPushButton:hover {"
-                      "background-color: rgba(255, 255, 255, 255);"
-                      "border: 1px solid rgba(252, 169, 216, 1);"
-                      "}";
+    QString buttonStyle = "QPushButton {"
+                          "background-color: rgba(255, 255, 255, 200);"
+                          "border: 1px solid rgba(255, 184, 224, 1);"
+                          "border-radius: 10px;"
+                          "padding: 10px;"
+                          "font-size: 16px;"
+                          "}"
+                          "QPushButton:hover {"
+                          "background-color: rgba(255, 255, 255, 255);"
+                          "border: 1px solid rgba(252, 169, 216, 1);"
+                          "}";
 
-ui->reg_2->setStyleSheet(buttonStyle);
-ui->back->setStyleSheet(buttonStyle);   
-
-connect(ui->reg_2, &QPushButton::clicked, this, &reg::on_registerButton_clicked);
-connect(ui->back, &QPushButton::clicked, this, &reg::on_backButton_clicked);
+    ui->reg_2->setStyleSheet(buttonStyle);
+    ui->back->setStyleSheet(buttonStyle);
+    connect(ui->reg_2, &QPushButton::clicked, this, &reg::on_registerButton_clicked);
+    connect(ui->back, &QPushButton::clicked, this, &reg::on_backButton_clicked);
 }
 reg::~reg()
 {
@@ -94,11 +91,7 @@ void reg::on_registerButton_clicked()
         return;
     }
 
-    // Получаем экземпляр SingletonClient
-    SingletonClient& client = SingletonClient::getInstance();
-
-    // Отправляем запрос на регистрацию и получаем ответ
-    QByteArray response = client.reg(username, password, email);
+    QByteArray response = m_clientManager->registerUser (username, password, email);
 
     // Обрабатываем ответ от сервера
     if (response.startsWith("reg&success&")) {
@@ -106,16 +99,22 @@ void reg::on_registerButton_clicked()
 
         if (responseParts.size() > 2) {
             bool ok;
-            int userId = responseParts.at(2).toInt(&ok);  // Преобразуем в int
+            int userId = responseParts.at(2).toInt(&ok);
             if (!ok) {
                 QMessageBox::warning(this, "Ошибка", "Не удалось преобразовать ID пользователя.");
                 return;
             }
             qDebug() << "Регистрация успешна. userId:" << userId;
-            calculator *calculatorWindow = new calculator(userId, this);
+
+            Client *newClient = new Client(this);
+            m_clientManager->addClient(userId, newClient);
+
+            // Открываем окно калькулятора и передаем userId
+            calculator *calculatorWindow = new calculator(userId, m_clientManager, this);
             calculatorWindow->show();
 
-            this->hide();
+
+             this->hide();
         } else {
             QMessageBox::warning(this, "Ошибка", "Неверный формат ответа от сервера.");
         }
@@ -124,14 +123,11 @@ void reg::on_registerButton_clicked()
     }
 }
 
-
-
-
 void reg::on_backButton_clicked()
 {
     firstwindow *firstWindow = new firstwindow(this);
     firstWindow->setAttribute(Qt::WA_DeleteOnClose); // Удаляем окно при закрытии
-    connect(firstWindow, &QDialog::finished, this, &reg::show);
+    connect(firstWindow, &QDialog::finished, this, &reg::show); // Показать текущее окно при закрытии нового
     this->hide(); // Скрываем текущее окно
     firstWindow->show(); // Открываем первое окно
 }

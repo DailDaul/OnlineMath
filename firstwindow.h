@@ -6,6 +6,9 @@
 #include <QMovie>
 #include <QPushButton>
 #include <QMessageBox>
+#include "clientmanager.h"
+#include "reg.h"
+#include "auth.h"
 namespace Ui {
 class firstwindow;
 }
@@ -22,10 +25,12 @@ private slots:
     void on_authButton_clicked();
 
 private:
+    reg *regWindow = nullptr;
+    auth *authWindow = nullptr;
     Ui::firstwindow *ui;
     QLabel *backgroundLabel;
     QMovie *movie;
-
+ ClientManager *clientManager;
 };
 
 #endif // FIRSTWINDOW_H

@@ -4,7 +4,7 @@
 #include <QDialog>
 #include <QLabel>
 #include <QMovie>
-
+#include "clientmanager.h"
 namespace Ui {
 class auth;
 }
@@ -14,7 +14,7 @@ class auth : public QDialog
     Q_OBJECT
 
 public:
-    explicit auth(QDialog *parent );
+    explicit auth(ClientManager *clientManager, QDialog *parent );
     ~auth();
 private slots:
     void on_authButton_clicked();
@@ -24,7 +24,7 @@ private:
     QString userId;
     QLabel *backgroundLabel;
     QMovie *movie;
-
+    ClientManager *clientManager;
 
 };
 

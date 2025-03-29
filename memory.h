@@ -14,7 +14,7 @@ public:
     ~memory();
 
 public slots:
-    void updateMemoryDisplay(const QStringList& calculations);
+    void updateMemoryDisplay(const QStringList& history);
 
 signals:
     void closed(int userId);
