@@ -2,6 +2,8 @@
 #include "ui_calculator.h"
 #include "memory.h"
 #include <QPixmap>
+#include <cmath>
+#include <QRegularExpression>
 #include <QVBoxLayout>
 #include <QDebug>
 #include <QMessageBox>
@@ -15,7 +17,7 @@ calculator::calculator(int userId, ClientManager *clientManager, QDialog *parent
     backgroundLabel(new QLabel(this))
 {
     ui->setupUi(this);
-connect(clientManager, &ClientManager::historyReceived, this, &calculator::onHistoryReceived);
+    connect(clientManager, &ClientManager::historyReceived, this, &calculator::onHistoryReceived);
     QPixmap backgroundPixmap("C:/Users/novos/Documents/Frontend/Frontend/build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/fon.jpg");
     if (backgroundPixmap.isNull()) {
         qDebug() << "Не удалось загрузить изображение!";
@@ -153,12 +155,9 @@ void calculator::on_editButton_clicked() {
     double result = evaluateExpression(expression);
 
     if (!qIsNaN(result)) {
-        QString resultString = QString::number(result); // Преобразуем результат в строку
-
+        QString resultString = QString::number(result);
         ui->wind->setText(resultString);
-
         QString calculation = expression + " = " + resultString;
-
         saveCalculation(calculation, userId);
     } else {
         ui->wind->setText("Ошибка");
@@ -166,48 +165,57 @@ void calculator::on_editButton_clicked() {
 }
 
 
-void calculator::on_sqrtButton_clicked() {
-    QString currentText = ui->wind->text();
-    bool ok;
-    double value = currentText.toDouble(&ok);
-
-    if (ok && value >= 0) { // Проверка на неотрицательное значение
-        double result = sqrt(value);
-        ui->wind->setText(QString::number(result));
-        saveCalculation("√" + currentText + " = " + QString::number(result), userId);
-    } else {
-        ui->wind->setText("Ошибка");
-    }
-}
-
-void calculator::on_cubeButton_clicked() {
-    QString currentText = ui->wind->text();
-    bool ok;
-    double value = currentText.toDouble(&ok); // Преобразуем текст в число
-
-    if (ok) {
-        double result = value * value;
-        ui->wind->setText(QString::number(result));
-        saveCalculation(currentText + " ^2 = " + QString::number(result), userId);
-    } else {
-        ui->wind->setText("Ошибка");
-    }
-
-}
-
 double calculator::evaluateExpression(const QString &expression) {
+    QString modifiedExpression = expression;
+    modifiedExpression.replace("%", "/ 100");
+
+    // Обрабатываем sqrt()
+    QRegularExpression sqrtRegex("sqrt\\(([^)]+)\\)");
+    QRegularExpressionMatchIterator sqrtMatchIterator = sqrtRegex.globalMatch(modifiedExpression);
+    while (sqrtMatchIterator.hasNext()) {
+        QRegularExpressionMatch sqrtMatch = sqrtMatchIterator.next();
+        QString innerExpression = sqrtMatch.captured(1);
+        double innerResult = evaluateExpression(innerExpression);
+        if (qIsNaN(innerResult) || innerResult < 0) {
+            return qSNaN();
+        }
+        double sqrtResult = std::sqrt(innerResult);
+        modifiedExpression.replace(sqrtMatch.capturedStart(), sqrtMatch.capturedLength(), QString::number(sqrtResult));
+    }
+
+    // Обрабатываем возведение в степень (^)
+    QRegularExpression powRegex("(\\d+(\\.\\d*)?)\\^(\\d+(\\.\\d*)?)");
+    QRegularExpressionMatchIterator powMatchIterator = powRegex.globalMatch(modifiedExpression);
+    while (powMatchIterator.hasNext()) {
+        QRegularExpressionMatch powMatch = powMatchIterator.next();
+        double base = powMatch.captured(1).toDouble();
+        double exponent = powMatch.captured(3).toDouble();
+        if (qIsNaN(base) || qIsNaN(exponent)) {
+            return qSNaN();
+        }
+        double powResult = std::pow(base, exponent);
+        modifiedExpression.replace(powMatch.capturedStart(), powMatch.capturedLength(), QString::number(powResult));
+    }
+
     QJSEngine engine;
-    QJSValue result = engine.evaluate(expression);
+    QJSValue result = engine.evaluate(modifiedExpression);
 
     if (result.isError()) {
         return qSNaN();
     }
+
     return result.toNumber();
+}
+void calculator::on_sqrtButton_clicked() {
+    ui->wind->insert("sqrt");
+}
+
+void calculator::on_cubeButton_clicked() {
+    ui->wind->insert("^2");
 }
 
 void calculator::saveCalculation(const QString &calculation, int userId) {
-clientManager->saveCalculation(userId, calculation);
+    clientManager->saveCalculation(userId, calculation);
 
 }
-
 
