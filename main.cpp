@@ -7,6 +7,7 @@
 #include "test_client.h"       // Подключите тесты для Client
 #include "testclientmanager.h" // Подключите тесты для ClientManager
 #include "test_reg.h"          // Подключите тесты для регистрации
+#include "test_auth.h"         // Подключите тесты для авторизации
 
 int main(int argc, char *argv[])
 {
@@ -28,12 +29,14 @@ int main(int argc, char *argv[])
     TestClient testClient;             // Создайте экземпляр тестового класса для клиента
     TestClientManager testClientManager; // Создайте экземпляр тестового класса для ClientManager
     TestReg testReg;                   // Создайте экземпляр тестового класса для регистрации
+    TestAuth testAuth;                 // Создайте экземпляр тестового класса для авторизации
 
     // Запустите тесты
     int result = QTest::qExec(&testFirstWindow, argc, argv);  // Запустите тесты для первого окна
     result |= QTest::qExec(&testClient, argc, argv);           // Запустите тесты для клиента
     result |= QTest::qExec(&testClientManager, argc, argv);    // Запустите тесты для ClientManager
     result |= QTest::qExec(&testReg, argc, argv);              // Запустите тесты для регистрации
+    result |= QTest::qExec(&testAuth, argc, argv);             // Запустите тесты для авторизации
 
     return result; // Верните результат выполнения тестов
 }
