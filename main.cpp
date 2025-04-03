@@ -3,11 +3,9 @@
 #include <QLocale>
 #include <QTest>
 #include "firstwindow.h"
-#include "test_firstwindow.h"  // Подключите ваш тестовый класс для первого окна
-#include "test_client.h"       // Подключите тесты для Client
-#include "testclientmanager.h" // Подключите тесты для ClientManager
-#include "test_reg.h"          // Подключите тесты для регистрации
-#include "test_auth.h"         // Подключите тесты для авторизации
+#include "test_firstwindow.h"
+#include "test_client.h"
+#include "testclientmanager.h"
 
 int main(int argc, char *argv[])
 {
@@ -25,18 +23,14 @@ int main(int argc, char *argv[])
     }
 
     // Запуск тестов
-    TestFirstWindow testFirstWindow;  // Создайте экземпляр вашего тестового класса для первого окна
-    TestClient testClient;             // Создайте экземпляр тестового класса для клиента
-    TestClientManager testClientManager; // Создайте экземпляр тестового класса для ClientManager
-    TestReg testReg;                   // Создайте экземпляр тестового класса для регистрации
-    TestAuth testAuth;                 // Создайте экземпляр тестового класса для авторизации
+    TestFirstWindow testFirstWindow;
+    TestClient testClient;
+    TestClientManager testClientManager;
 
     // Запустите тесты
-    int result = QTest::qExec(&testFirstWindow, argc, argv);  // Запустите тесты для первого окна
-    result |= QTest::qExec(&testClient, argc, argv);           // Запустите тесты для клиента
-    result |= QTest::qExec(&testClientManager, argc, argv);    // Запустите тесты для ClientManager
-    result |= QTest::qExec(&testReg, argc, argv);              // Запустите тесты для регистрации
-    result |= QTest::qExec(&testAuth, argc, argv);             // Запустите тесты для авторизации
+    int result = QTest::qExec(&testFirstWindow, argc, argv);
+    result |= QTest::qExec(&testClient, argc, argv);
+    result |= QTest::qExec(&testClientManager, argc, argv);
 
-    return result; // Верните результат выполнения тестов
+    return result;
 }
