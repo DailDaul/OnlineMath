@@ -1,15 +1,10 @@
-Именуем файлы по их прямому назначению, чтобы избежать путаницы.
-Server-client - Букарева Анна и Князева Таисия
-Frontend и window (интерфейс) - Новосёловаа Мария
-docs - Пешкова Ульяна и Князева Таисия
+## Участники
 
-echo "# OnlineMath" >> README.md
-git init
-git add README.md
-git commit -m "first commit"
-git branch -M main
-git remote add origin https://github.com/DailDaul/OnlineMath.git
-git push -u origin main
-git remote add origin https://github.com/DailDaul/OnlineMath.git
-git branch -M main
-git push -u origin main
+|ФИО| Ветки |
+|-|-|
+|Букарева Анна Викторовна|Server-client|
+|Новосёлова Мария Викторовна|Frontend, window|
+|Пешкова Ульяна Игоревна|docs, Doxygen|
+|Князева Таисия Игоревна|docs, Server-client|
+
+Документы именуем по их прямому назначению.
