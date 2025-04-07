@@ -1,0 +1,105 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 YaBrowser/25.2.0.0 Safari/537.36" version="26.2.8">
+  <diagram name="Страница — 1" id="pIdG_vWwgE1o67iGHw3Q">
+    <mxGraphModel grid="1" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="A9gwGV0eM1s3dFcHj9r0-5" value="MyTcpServer" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="250" width="240" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="A9gwGV0eM1s3dFcHj9r0-6" value="- mTcpServer: QTcpServer*&lt;div&gt;- mTcpSocket: QTcpSocket*&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="A9gwGV0eM1s3dFcHj9r0-5">
+          <mxGeometry y="26" width="240" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="A9gwGV0eM1s3dFcHj9r0-7" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="A9gwGV0eM1s3dFcHj9r0-5">
+          <mxGeometry y="60" width="240" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="A9gwGV0eM1s3dFcHj9r0-8" value="+ MyTcpServer(QObject *parent = nullptr)&lt;div&gt;+ ~MyTcpServer()&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ slotNewConnection(): void&lt;/span&gt;&lt;/div&gt;&lt;div&gt;+ slotClientDisconnected(): void&lt;/div&gt;&lt;div&gt;+ slotServerRead(): void&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="A9gwGV0eM1s3dFcHj9r0-5">
+          <mxGeometry y="68" width="240" height="82" as="geometry" />
+        </mxCell>
+        <mxCell id="A9gwGV0eM1s3dFcHj9r0-9" value="functionsforserver" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="22" y="440" width="356" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="A9gwGV0eM1s3dFcHj9r0-11" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="A9gwGV0eM1s3dFcHj9r0-9">
+          <mxGeometry y="26" width="356" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="A9gwGV0eM1s3dFcHj9r0-12" value="+ parsing(QString data_from_client): QByteArray&lt;div&gt;+ auth(QString log,QString pass,&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;QString mail = &quot; &quot;&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;): QByteArray&lt;/span&gt;&lt;/div&gt;&lt;div&gt;+ reg(QString log, QString pass, QString mail): QByteArray&lt;/div&gt;&lt;div&gt;+ saveCalculation(int userId, QString&amp;amp; operation): QByteArray&lt;/div&gt;&lt;div&gt;+ getHistory(int userId, int limit): QByteArray&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="A9gwGV0eM1s3dFcHj9r0-9">
+          <mxGeometry y="34" width="356" height="86" as="geometry" />
+        </mxCell>
+        <mxCell id="8WNhcA9rRjhu5eOppAMc-1" value="DataBase" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="570" y="120" width="580" height="260" as="geometry" />
+        </mxCell>
+        <mxCell id="8WNhcA9rRjhu5eOppAMc-2" value="- db: QSqlDatabase" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="8WNhcA9rRjhu5eOppAMc-1">
+          <mxGeometry y="26" width="580" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="8WNhcA9rRjhu5eOppAMc-3" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="8WNhcA9rRjhu5eOppAMc-1">
+          <mxGeometry y="50" width="580" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="8WNhcA9rRjhu5eOppAMc-4" value="+ DataBase(QString host, QString dbName, QString user, QString password)&lt;div&gt;+ ~DataBase()&lt;/div&gt;&lt;div&gt;&lt;div&gt;+ createTables(): bool&lt;/div&gt;&lt;div&gt;+ open(): bool&lt;/div&gt;&lt;div&gt;+ isOpen() const: bool&lt;/div&gt;&lt;/div&gt;&lt;div&gt;+ close(): void&lt;/div&gt;&lt;div&gt;+ createUser(QString&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;login&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;, QString&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;password&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;, QString&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;email, QString&amp;amp; errorMessage, int&amp;amp; userId&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;): bool&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ authenticateUser(QString login, QString password): bool&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ saveCalculation(int userId, QString operation): bool&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ getHistory(int userId, int limit): QList&amp;lt;QMap&amp;lt;QString, QVariant&amp;gt;&amp;gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;+ listUsers()&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;: void&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ dropUser Table(): void&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ getUser Id(QString login): int&lt;/span&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="8WNhcA9rRjhu5eOppAMc-1">
+          <mxGeometry y="58" width="580" height="202" as="geometry" />
+        </mxCell>
+        <mxCell id="Nwrs-7k7xmA_iiu5eSHF-6" value="Singleton" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="560" y="440" width="370" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="Nwrs-7k7xmA_iiu5eSHF-7" value="- instance: Singleton*&lt;div&gt;- db: DataBase*&lt;br&gt;&lt;div&gt;- destroyer: SingletonDestroyer&lt;/div&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="Nwrs-7k7xmA_iiu5eSHF-6">
+          <mxGeometry y="26" width="370" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="Nwrs-7k7xmA_iiu5eSHF-8" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="Nwrs-7k7xmA_iiu5eSHF-6">
+          <mxGeometry y="80" width="370" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="Nwrs-7k7xmA_iiu5eSHF-9" value="+ Singleton()&lt;div&gt;+ ~Singleton()&lt;br&gt;&lt;div&gt;+&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;static Singleton*&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;get_instance()&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ DataBase* getDataBase()&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ authenticateUser(QString login, QString password): bool&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ createUser(QString login, QString password, QString email, QString&amp;amp; errorMessage, int&amp;amp; userId): bool&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+getUser Id(QString login): int&lt;/span&gt;&lt;/div&gt;&lt;div&gt;+ saveCalculation(int userId, QString operation): bool&lt;/div&gt;&lt;div&gt;+ getHistory(int userId, int limit): QList&amp;lt;QMap&amp;lt;QString, QVariant&amp;gt;&amp;gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="Nwrs-7k7xmA_iiu5eSHF-6">
+          <mxGeometry y="88" width="370" height="162" as="geometry" />
+        </mxCell>
+        <mxCell id="Nwrs-7k7xmA_iiu5eSHF-10" value="SingletonDestroyer" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="970" y="440" width="190" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="Nwrs-7k7xmA_iiu5eSHF-11" value="- instance: Singleton*" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="Nwrs-7k7xmA_iiu5eSHF-10">
+          <mxGeometry y="26" width="190" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="Nwrs-7k7xmA_iiu5eSHF-12" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="Nwrs-7k7xmA_iiu5eSHF-10">
+          <mxGeometry y="52" width="190" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="Nwrs-7k7xmA_iiu5eSHF-13" value="&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ ~SingletonDestroyer()&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ initialize(Singleton* link): void&lt;/span&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="Nwrs-7k7xmA_iiu5eSHF-10">
+          <mxGeometry y="60" width="190" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="Nwrs-7k7xmA_iiu5eSHF-16" value="" style="endArrow=none;html=1;rounded=0;entryX=1.003;entryY=0.059;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="Nwrs-7k7xmA_iiu5eSHF-6">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="970" y="455" as="sourcePoint" />
+            <mxPoint x="940" y="430" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Nwrs-7k7xmA_iiu5eSHF-19" value="" style="endArrow=none;html=1;rounded=0;exitX=-0.003;exitY=0.076;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="8WNhcA9rRjhu5eOppAMc-1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="560" y="140" as="sourcePoint" />
+            <mxPoint x="480" y="140" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Wqm9H9HK_NHPDLtgXBV9-1" value="" style="endArrow=none;html=1;rounded=0;exitX=0.498;exitY=1.016;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="A9gwGV0eM1s3dFcHj9r0-8" target="A9gwGV0eM1s3dFcHj9r0-9">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="180" y="380" as="sourcePoint" />
+            <mxPoint x="170" y="340" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Wqm9H9HK_NHPDLtgXBV9-3" value="" style="endArrow=none;html=1;rounded=0;exitX=1.001;exitY=0.082;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="A9gwGV0eM1s3dFcHj9r0-9">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="378.06799999999976" y="420.00000000000006" as="sourcePoint" />
+            <mxPoint x="480" y="450" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Wqm9H9HK_NHPDLtgXBV9-4" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="480" y="450" as="sourcePoint" />
+            <mxPoint x="480" y="140" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Wqm9H9HK_NHPDLtgXBV9-6" value="" style="endArrow=none;html=1;rounded=0;entryX=-0.001;entryY=-0.056;entryDx=0;entryDy=0;entryPerimeter=0;exitX=1;exitY=0.194;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="A9gwGV0eM1s3dFcHj9r0-9" target="Nwrs-7k7xmA_iiu5eSHF-7">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="390" y="470" as="sourcePoint" />
+            <mxPoint x="510" y="390" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

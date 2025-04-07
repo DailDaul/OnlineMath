@@ -1,0 +1,166 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 YaBrowser/25.2.0.0 Safari/537.36" version="26.2.8">
+  <diagram name="Страница — 1" id="o189YS2O5-wHOSl-EoJu">
+    <mxGraphModel grid="1" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="EnSEdpKZLAHjUMRTS1j8-1" value="auth" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="630" y="39" width="310" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="EnSEdpKZLAHjUMRTS1j8-2" value="- ui: Ui::auth*&lt;div&gt;- userId: QString&lt;/div&gt;&lt;div&gt;- backgrounLabel: QLabel*&lt;/div&gt;&lt;div&gt;- movie: QMovie*&lt;/div&gt;&lt;div&gt;- clientManager: ClientManager*&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="EnSEdpKZLAHjUMRTS1j8-1">
+          <mxGeometry y="26" width="310" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="EnSEdpKZLAHjUMRTS1j8-3" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="EnSEdpKZLAHjUMRTS1j8-1">
+          <mxGeometry y="116" width="310" height="2" as="geometry" />
+        </mxCell>
+        <mxCell id="EnSEdpKZLAHjUMRTS1j8-4" value="&lt;div&gt;+ auth(ClientManager* clientManager, QDialog* parent)&lt;/div&gt;&lt;div&gt;+ ~auth()&lt;/div&gt;&lt;div&gt;- on_authButton_clicked(): void&lt;/div&gt;&lt;div&gt;- on_backtoButton_clicked(): void&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="EnSEdpKZLAHjUMRTS1j8-1">
+          <mxGeometry y="118" width="310" height="72" as="geometry" />
+        </mxCell>
+        <mxCell id="EnSEdpKZLAHjUMRTS1j8-5" value="reg" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="360" width="380" height="188" as="geometry" />
+        </mxCell>
+        <mxCell id="EnSEdpKZLAHjUMRTS1j8-6" value="- ui: Ui::reg*&lt;div&gt;- userId: QString&lt;/div&gt;&lt;div&gt;- backgroundLabel: QLabel*&lt;/div&gt;&lt;div&gt;- movie: QMovie*&lt;/div&gt;&lt;div&gt;- m_clientManager: ClientManager*&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="EnSEdpKZLAHjUMRTS1j8-5">
+          <mxGeometry y="26" width="380" height="84" as="geometry" />
+        </mxCell>
+        <mxCell id="EnSEdpKZLAHjUMRTS1j8-7" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="EnSEdpKZLAHjUMRTS1j8-5">
+          <mxGeometry y="110" width="380" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="EnSEdpKZLAHjUMRTS1j8-8" value="+ reg(ClientManager* clientManager, QWidget* = nullptr parent)&lt;div&gt;+ getUser Id(): QString&lt;/div&gt;&lt;div&gt;+ on_registerButton_clicked(): void&lt;/div&gt;&lt;div&gt;+ on_backButton_clicked(): void&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="EnSEdpKZLAHjUMRTS1j8-5">
+          <mxGeometry y="118" width="380" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="EnSEdpKZLAHjUMRTS1j8-9" value="ClientManager" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="540" y="349" width="420" height="188" as="geometry" />
+        </mxCell>
+        <mxCell id="EnSEdpKZLAHjUMRTS1j8-10" value="- userClients: QMap&amp;lt;int, Client*&amp;gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="EnSEdpKZLAHjUMRTS1j8-9">
+          <mxGeometry y="26" width="420" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="EnSEdpKZLAHjUMRTS1j8-11" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="EnSEdpKZLAHjUMRTS1j8-9">
+          <mxGeometry y="50" width="420" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="EnSEdpKZLAHjUMRTS1j8-12" value="+ requestHistory(int userId, int limit): void&lt;div&gt;+ authenticateUser(QString login, QString password): QByteArray&lt;/div&gt;&lt;div&gt;+ registerUser(QString login, QString password, QString email): QByteArray&lt;/div&gt;&lt;div&gt;+ saveCalculation(int userId, QString operation): QByteArray&lt;/div&gt;&lt;div&gt;+ addClient(int userId, Client* client): void&lt;/div&gt;&lt;div&gt;+ removeClient(int userId): void&lt;/div&gt;&lt;div&gt;+ historyReceived(int userId, QStringList history)&lt;/div&gt;&lt;div&gt;+ onClientHistoryReceived(int userId, QStringList history): void&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="EnSEdpKZLAHjUMRTS1j8-9">
+          <mxGeometry y="58" width="420" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="EnSEdpKZLAHjUMRTS1j8-13" value="Client" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="680" width="370" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="EnSEdpKZLAHjUMRTS1j8-14" value="- socket: QTcpSocket*" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="EnSEdpKZLAHjUMRTS1j8-13">
+          <mxGeometry y="26" width="370" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="EnSEdpKZLAHjUMRTS1j8-15" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="EnSEdpKZLAHjUMRTS1j8-13">
+          <mxGeometry y="50" width="370" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="EnSEdpKZLAHjUMRTS1j8-16" value="+ auth(QString login, QString password): QByteArray&lt;div&gt;+ reg(QString login, QString password, QString email): QByteArray&lt;/div&gt;&lt;div&gt;+ sendRequest(QByteArray request): QByteArray&lt;/div&gt;&lt;div&gt;+ saveCalculation(int userId, QString operation): QByteArray&lt;/div&gt;&lt;div&gt;+ getHistory(int userId, int limit): void&lt;/div&gt;&lt;div&gt;+ historyReceived(int userId, QStringList history)&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="EnSEdpKZLAHjUMRTS1j8-13">
+          <mxGeometry y="58" width="370" height="102" as="geometry" />
+        </mxCell>
+        <mxCell id="EnSEdpKZLAHjUMRTS1j8-17" value="" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=0;exitDx=0;exitDy=0;entryX=-0.001;entryY=0.059;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="EnSEdpKZLAHjUMRTS1j8-5" target="EnSEdpKZLAHjUMRTS1j8-9">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="423" y="350" as="sourcePoint" />
+            <mxPoint x="490" y="390" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EnSEdpKZLAHjUMRTS1j8-18" value="" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=0;exitDx=0;exitDy=0;entryX=0.002;entryY=0.034;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="EnSEdpKZLAHjUMRTS1j8-9" target="t8GvkZEQ213Hq96CnfsY-5">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="220" y="1137" as="sourcePoint" />
+            <mxPoint x="1090" y="260" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EnSEdpKZLAHjUMRTS1j8-19" value="" style="endArrow=none;html=1;rounded=0;entryX=1;entryY=0;entryDx=0;entryDy=0;exitX=-0.001;exitY=0.118;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="EnSEdpKZLAHjUMRTS1j8-9" target="EnSEdpKZLAHjUMRTS1j8-13">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="490" y="400" as="sourcePoint" />
+            <mxPoint x="370" y="640" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t8GvkZEQ213Hq96CnfsY-1" value="SingletonClient" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="570" y="670" width="370" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="t8GvkZEQ213Hq96CnfsY-2" value="- socket: QTcpSocket*" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="t8GvkZEQ213Hq96CnfsY-1">
+          <mxGeometry y="26" width="370" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="t8GvkZEQ213Hq96CnfsY-3" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="t8GvkZEQ213Hq96CnfsY-1">
+          <mxGeometry y="50" width="370" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="t8GvkZEQ213Hq96CnfsY-4" value="+ getInstance(): SingletonClient&amp;amp;&lt;div&gt;+ sendRequest(QByteArray request): QByteArray&lt;/div&gt;&lt;div&gt;+ auth(QString login, QString password): QByteArray&lt;/div&gt;&lt;div&gt;+ reg(QString login, QString password, QString email): QByteArray&lt;/div&gt;&lt;div&gt;+ getHistory(int userId, int limit): void&lt;/div&gt;&lt;div&gt;+ saveCalculation(int userId, QString operation): QByteArray&lt;/div&gt;&lt;div&gt;+ historyReceived(int userId, QStringList history)&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="t8GvkZEQ213Hq96CnfsY-1">
+          <mxGeometry y="58" width="370" height="112" as="geometry" />
+        </mxCell>
+        <mxCell id="t8GvkZEQ213Hq96CnfsY-5" value="calculator" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1080" y="39" width="360" height="590" as="geometry" />
+        </mxCell>
+        <mxCell id="t8GvkZEQ213Hq96CnfsY-6" value="- userId: int&lt;div&gt;- ui: Ui::calculator*&lt;/div&gt;&lt;div&gt;- backgroundLabel: QLabel*&lt;/div&gt;&lt;div&gt;- recentCalculations: QStringList&lt;/div&gt;&lt;div&gt;- memoryInstance: Pointer&amp;lt;memory&amp;gt;&lt;/div&gt;&lt;div&gt;- clientManager: ClientManager*&lt;/div&gt;&lt;div&gt;- isOpen: bool&lt;/div&gt;&lt;div&gt;- isConnected: bool&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="t8GvkZEQ213Hq96CnfsY-5">
+          <mxGeometry y="26" width="360" height="124" as="geometry" />
+        </mxCell>
+        <mxCell id="t8GvkZEQ213Hq96CnfsY-7" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="t8GvkZEQ213Hq96CnfsY-5">
+          <mxGeometry y="150" width="360" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="t8GvkZEQ213Hq96CnfsY-8" value="+ getRecentCalculations(): QStringList&lt;div&gt;+ on_oneButton_clicked(): void&lt;/div&gt;&lt;div&gt;+ on_two&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;Button_clicked(): void&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ on_three&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;Button_clicked(): void&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ on_four&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;Button_clicked(): void&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ on_five&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;Button_clicked(): void&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ on_six&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;Button_clicked(): void&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ on_seven&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;Button_clicked(): void&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ on_eight&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;Button_clicked(): void&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ on_nine&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;Button_clicked(): void&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ on_zero&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;Button_clicked(): void&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ on_plus&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;Button_clicked(): void&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ on_mins&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;Button_clicked(): void&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ on_mult&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;Button_clicked(): void&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ on_dash&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;Button_clicked(): void&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ on_sqrt&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;Button_clicked(): void&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ on_edit&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;Button_clicked(): void&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ on_clean&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;Button_clicked(): void&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ on_scob&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;Button_clicked(): void&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ on_procent&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;Button_clicked(): void&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ on_cube&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;Button_clicked(): void&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ on_dr&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;Button_clicked(): void&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ on_point&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;Button_clicked(): void&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ on_min&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;Button_clicked(): void&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ on_memory&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;Button_clicked(): void&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ onHistoryReceived(int userId, const QStringList&amp;amp; history): void&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ onMemoryClosed(int userId): void&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ saveCalculation(const QString &amp;amp;calculation, int userId): void&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ evaluateExpression(const QString &amp;amp;expression): double&lt;/span&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="t8GvkZEQ213Hq96CnfsY-5">
+          <mxGeometry y="158" width="360" height="432" as="geometry" />
+        </mxCell>
+        <mxCell id="t8GvkZEQ213Hq96CnfsY-9" value="firstwindow" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="130" y="39" width="230" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="t8GvkZEQ213Hq96CnfsY-10" value="- regWindow: reg*&lt;div&gt;- authWindow: auth*&lt;/div&gt;&lt;div&gt;- ui: Ui::firstwindow*&lt;/div&gt;&lt;div&gt;- backgroundLabel: QLabel*&lt;/div&gt;&lt;div&gt;- movie: QMovie*&lt;/div&gt;&lt;div&gt;- clientManager: ClientManager*&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="t8GvkZEQ213Hq96CnfsY-9">
+          <mxGeometry y="26" width="230" height="94" as="geometry" />
+        </mxCell>
+        <mxCell id="t8GvkZEQ213Hq96CnfsY-11" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="t8GvkZEQ213Hq96CnfsY-9">
+          <mxGeometry y="120" width="230" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="t8GvkZEQ213Hq96CnfsY-12" value="+ firstwindow(QWidget *parent = nullptr)&lt;div&gt;+ ~firstwindow()&lt;/div&gt;&lt;div&gt;+ on_regButton_clicked(): void&lt;/div&gt;&lt;div&gt;+ on_authButton_clicked(): void&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="t8GvkZEQ213Hq96CnfsY-9">
+          <mxGeometry y="128" width="230" height="72" as="geometry" />
+        </mxCell>
+        <mxCell id="t8GvkZEQ213Hq96CnfsY-13" value="memory" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1100" y="700" width="320" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="t8GvkZEQ213Hq96CnfsY-14" value="- userId: int&lt;div&gt;- memoryListWidget: QListWidget*&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="t8GvkZEQ213Hq96CnfsY-13">
+          <mxGeometry y="26" width="320" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="t8GvkZEQ213Hq96CnfsY-15" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="t8GvkZEQ213Hq96CnfsY-13">
+          <mxGeometry y="60" width="320" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="t8GvkZEQ213Hq96CnfsY-16" value="+ memory(int userId, QWidget *parent = nullptr)&lt;div&gt;+ ~memory&lt;/div&gt;&lt;div&gt;+ updateMemoryDisplay(const QStringList&amp;amp; history): void&lt;/div&gt;&lt;div&gt;+ closed(int userId): void(signal)&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="t8GvkZEQ213Hq96CnfsY-13">
+          <mxGeometry y="68" width="320" height="72" as="geometry" />
+        </mxCell>
+        <mxCell id="t8GvkZEQ213Hq96CnfsY-20" value="" style="endArrow=none;html=1;rounded=0;entryX=0;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" target="EnSEdpKZLAHjUMRTS1j8-5">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="130" y="60" as="sourcePoint" />
+            <mxPoint x="350" y="300" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t8GvkZEQ213Hq96CnfsY-21" value="" style="endArrow=none;html=1;rounded=0;exitX=0.048;exitY=0;exitDx=0;exitDy=0;exitPerimeter=0;entryX=-0.002;entryY=0.099;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="EnSEdpKZLAHjUMRTS1j8-9" target="EnSEdpKZLAHjUMRTS1j8-1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="590" y="340" as="sourcePoint" />
+            <mxPoint x="610" y="66" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t8GvkZEQ213Hq96CnfsY-22" value="" style="endArrow=none;html=1;rounded=0;entryX=0;entryY=0;entryDx=0;entryDy=0;exitX=1;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="EnSEdpKZLAHjUMRTS1j8-1" target="t8GvkZEQ213Hq96CnfsY-5">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="980" y="54" as="sourcePoint" />
+            <mxPoint x="600" y="90" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t8GvkZEQ213Hq96CnfsY-23" value="" style="endArrow=none;html=1;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.499;entryY=1;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="t8GvkZEQ213Hq96CnfsY-13" target="t8GvkZEQ213Hq96CnfsY-8">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="680" y="610" as="sourcePoint" />
+            <mxPoint x="1250" y="640" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t8GvkZEQ213Hq96CnfsY-24" value="" style="endArrow=none;html=1;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.511;entryY=1.004;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="t8GvkZEQ213Hq96CnfsY-1" target="EnSEdpKZLAHjUMRTS1j8-12">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="670" y="550" as="sourcePoint" />
+            <mxPoint x="800" y="580" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t8GvkZEQ213Hq96CnfsY-25" value="" style="endArrow=none;html=1;rounded=0;exitX=0;exitY=0;exitDx=0;exitDy=0;entryX=1.002;entryY=0.067;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="EnSEdpKZLAHjUMRTS1j8-9" target="t8GvkZEQ213Hq96CnfsY-9">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="350" y="200" as="sourcePoint" />
+            <mxPoint x="380" y="60" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t8GvkZEQ213Hq96CnfsY-27" value="" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="t8GvkZEQ213Hq96CnfsY-9" target="EnSEdpKZLAHjUMRTS1j8-1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="300" y="40" as="sourcePoint" />
+            <mxPoint x="635" y="40" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
