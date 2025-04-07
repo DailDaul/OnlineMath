@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  myserver:
+    image: ubuntu:latest
+    container_name: myserver
+    ports:
+      - "33333:33333"
+    volumes:
+      - ./myapp:/usr/src/myapp  # предполагается, что ваши файлы проекта находятся в подкаталоге ./myapp
+    command: |
+      /bin/bash -c "apt-get update && \
+        apt-get install -y qtcreator qtbase5-dev qttools5-dev-tools qt5-qmake cmake telnet g++ && \
+        cd /usr/src/myapp && \
+        qmake echoSserver.pro && \
+        make && \
+        ./echoSserver"
+    stdin_open: true  # эквивалент --interactive
+    tty: true         # эквивалент -t
